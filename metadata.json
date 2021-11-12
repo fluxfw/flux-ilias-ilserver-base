@@ -1,0 +1,15 @@
+{
+  "description": "ILIAS base ilserver docker image (Experimental Beta Version)",
+  "keywords": [
+    "alpine",
+    "base",
+    "beta",
+    "docker",
+    "experimental",
+    "ilias",
+    "ilserver",
+    "java",
+    "lueance"
+  ],
+  "homepage": "https://github.com/fluxapps/FluxIliasIlserverBase"
+}

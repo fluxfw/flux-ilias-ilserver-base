@@ -1,0 +1,42 @@
+variables:
+  DOCKER_REGISTRY_IMAGE_NAME: flux-ilias/ilserver-base
+  DEV_DOCKER_REGISTRY_IMAGE: $DEV_DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_IMAGE_NAME
+  DOCKER_REGISTRY_IMAGE: $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_IMAGE_NAME
+  JAVA_VERSIONS: "8"
+
+build:
+  stage: build
+  script:
+    - echo -n $DEV_DOCKER_REGISTRY_PASSWORD | docker login -u $DEV_DOCKER_REGISTRY_USER --password-stdin $DEV_DOCKER_REGISTRY_URL;
+      for java_version in $JAVA_VERSIONS; do
+        docker build . --pull --build-arg JAVA_VERSION=$java_version -t $DEV_DOCKER_REGISTRY_IMAGE:java$java_version;
+        docker push $DEV_DOCKER_REGISTRY_IMAGE:java$java_version;
+      done;
+      docker logout $DEV_DOCKER_REGISTRY_URL;
+  only:
+    - develop
+
+FluxPublishUtils:
+  stage: build
+  image: docker-registry.fluxpublisher.ch/flux-publish-utils:latest
+  script:
+    - "false"
+  only:
+    - main
+
+publish:
+  stage: deploy
+  script:
+    - echo -n $DEV_DOCKER_REGISTRY_PASSWORD | docker login -u $DEV_DOCKER_REGISTRY_USER --password-stdin $DEV_DOCKER_REGISTRY_URL;
+      for java_version in $JAVA_VERSIONS; do
+        docker pull $DEV_DOCKER_REGISTRY_IMAGE:java$java_version;
+      done;
+      docker logout $DEV_DOCKER_REGISTRY_URL;
+    - echo -n $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY_URL;
+      for java_version in $JAVA_VERSIONS; do
+        docker tag $DEV_DOCKER_REGISTRY_IMAGE:java$java_version $DOCKER_REGISTRY_IMAGE:java$java_version;
+        docker push $DOCKER_REGISTRY_IMAGE:java$java_version;
+      done;
+      docker logout $DOCKER_REGISTRY_URL;
+  only:
+    - main
