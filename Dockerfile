@@ -1,12 +1,12 @@
 ARG JAVA_VERSION
 FROM openjdk:$JAVA_VERSION-jre-alpine
 
-LABEL org.opencontainers.image.source="https://github.com/fluxapps/FluxIliasIlserverBase"
+LABEL org.opencontainers.image.source="https://github.com/fluxapps/flux-ilias-ilserver-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
 
-COPY . /FluxIliasIlserver
+COPY . /flux-ilias-ilserver-base
 
-ENTRYPOINT ["/FluxIliasIlserver/bin/entrypoint.sh"]
+ENTRYPOINT ["/flux-ilias-ilserver-base/bin/entrypoint.sh"]
 
 ENV ILIAS_COMMON_CLIENT_ID default
 ENV ILIAS_FILESYSTEM_DATA_DIR /var/iliasdata
