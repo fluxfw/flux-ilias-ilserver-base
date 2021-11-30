@@ -1,5 +1,6 @@
-ARG JAVA_VERSION
-FROM openjdk:$JAVA_VERSION-jre-alpine
+ARG JAVA_IMAGE=openjdk:jre-alpine
+
+FROM $JAVA_IMAGE
 
 LABEL org.opencontainers.image.source="https://github.com/fluxapps/flux-ilias-ilserver-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
