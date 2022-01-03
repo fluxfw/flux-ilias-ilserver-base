@@ -3,6 +3,7 @@ variables:
 
 build:
   stage: build
+  image: docker:stable
   script:
     - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
       for java_version in $JAVA_VERSIONS; do
@@ -23,6 +24,7 @@ flux-publish-utils:
 
 publish:
   stage: deploy
+  image: docker:stable
   script:
     - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
       for java_version in $JAVA_VERSIONS; do
