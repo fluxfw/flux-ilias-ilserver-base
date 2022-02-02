@@ -19,10 +19,10 @@ The follow environment variables are available
 | Variable | Description | Default value |
 | -------- | ----------- | ------------- |
 | ILIAS_COMMON_CLIENT_ID | Client name | default |
-| ILIAS_FILESYSTEM_DATA_DIR | Path to data directory<br>This is a volume | /var/iliasdata |
+| ILIAS_FILESYSTEM_DATA_DIR | Path to ILIAS data directory<br>This is a volume | /var/iliasdata |
 | ILIAS_FILESYSTEM_INI_PHP_FILE | Path to ILIAS ini file | *%ILIAS_FILESYSTEM_DATA_DIR%*/ilias.ini.php |
 | ILIAS_WEB_DIR | Path to ILIAS source code | /var/www/html |
-| ILIAS_ILSERVER_DATA_DIR | Path to ilserver data directory | /var/ilserverdata |
+| ILIAS_ILSERVER_DATA_DIR | Path to ilserver data directory<br>This is a volume | /var/ilserverdata |
 | ILIAS_ILSERVER_INDEX_MAX_FILE_SIZE | Maximal file size (MB) | 500 |
 | ILIAS_ILSERVER_INDEX_PATH | Path to index directory | *%ILIAS_ILSERVER_DATA_DIR%*/index |
 | ILIAS_ILSERVER_IP_ADDRESS | Listen IP | 0.0.0.0 |
