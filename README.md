@@ -4,16 +4,6 @@ Experimental Beta Version
 
 First look at [flux-ilias](https://github.com/fluxapps/flux-ilias)
 
-## Permission issues
-
-If you have permission issues in the data directory, you need to give the www-data user write permissions with the follow command like
-
-```shell
-docker run --rm --user root:root -v "$PWD/data/ilserver":/var/ilserverdata --entrypoint chown %image% www-data:www-data -R /var/ilserverdata
-```
-
-## Environment variables
-
 The follow environment variables are available
 
 | Variable | Description | Default value |

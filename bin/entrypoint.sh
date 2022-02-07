@@ -2,6 +2,26 @@
 
 set -e
 
+checkWwwData() {
+  if [ `stat -c %u "$1"` = `id -u www-data` ] && [ `stat -c %g "$1"` = `id -g www-data` ]; then
+    echo "true"
+  else
+    echo "false"
+  fi
+}
+
+ensureWwwData() {
+  mkdir -p "$1"
+  until [ `checkWwwData "$1"` = "true" ]; do
+    echo "$1 is not owned by www-data"
+    echo "Please manually run the follow command like"
+    echo "docker exec --user root:root `hostname` chown www-data:www-data -R $1"
+    echo "Waiting 30 seconds for check again"
+    sleep 30
+  done
+  echo "$1 is owned by www-data"
+}
+
 ILIAS_COMMON_CLIENT_ID="${ILIAS_COMMON_CLIENT_ID:=default}"
 
 ILIAS_FILESYSTEM_INI_PHP_FILE="${ILIAS_FILESYSTEM_INI_PHP_FILE:=$ILIAS_FILESYSTEM_DATA_DIR/ilias.ini.php}"
@@ -20,14 +40,15 @@ if [ ! -f "$ILIAS_WEB_DIR/ilias.php" ]; then
   exit 1
 fi
 
+ensureWwwData "$ILIAS_ILSERVER_DATA_DIR"
+ensureWwwData "$ILIAS_ILSERVER_INDEX_PATH"
+
 if [ -f "$ILIAS_FILESYSTEM_INI_PHP_FILE" ]; then
   echo "ILIAS config found"
 else
   echo "ILIAS not configured yet"
   exit 1
 fi
-
-mkdir -p "$ILIAS_ILSERVER_INDEX_PATH"
 
 echo "Generate ilserver config"
 echo "[Server]
