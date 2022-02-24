@@ -15,7 +15,7 @@ ensureWwwData() {
   until [ `checkWwwData "$1"` = "true" ]; do
     echo "$1 is not owned by www-data"
     echo "Please manually run the follow command like"
-    echo "docker exec --user root:root `hostname` chown www-data:www-data -R $1"
+    echo "docker exec -u root:root `hostname` chown www-data:www-data -R $1"
     echo "Waiting 30 seconds for check again"
     sleep 30
   done
