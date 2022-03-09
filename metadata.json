@@ -1,15 +1,13 @@
 {
-  "description": "ILIAS base ilserver docker image (Experimental Beta Version)",
-  "topics": [
-    "alpine",
-    "base",
-    "beta",
-    "docker",
-    "experimental",
-    "ilias",
-    "ilserver",
-    "java",
-    "lucene"
-  ],
-  "homepage": "https://github.com/fluxapps/flux-ilias-ilserver-base"
+    "description": "ILIAS base ilserver docker image",
+    "topics": [
+        "alpine",
+        "base",
+        "docker",
+        "ilias",
+        "ilserver",
+        "java",
+        "lucene"
+    ],
+    "homepage": "https://github.com/fluxapps/flux-ilias-ilserver-base"
 }

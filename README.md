@@ -1,6 +1,6 @@
 # flux-ilias-ilserver-base
 
-Experimental Beta Version
+ILIAS base ilserver docker image
 
 First look at [flux-ilias](https://github.com/fluxapps/flux-ilias)
 
