@@ -3,7 +3,7 @@
 set -e
 
 checkWwwData() {
-    if [ `stat -c %u "$1"` = `id -u www-data` ] && [ `stat -c %g "$1"` = `id -g www-data` ]; then
+    if test -w "$1"; then
         echo "true"
     else
         echo "false"
@@ -13,13 +13,13 @@ checkWwwData() {
 ensureWwwData() {
     mkdir -p "$1"
     until [ `checkWwwData "$1"` = "true" ]; do
-        echo "$1 is not owned by www-data"
+        echo "www-data can not write to $1"
         echo "Please manually run the follow command like"
         echo "docker exec -u root:root `hostname` chown www-data:www-data -R $1"
         echo "Waiting 30 seconds for check again"
         sleep 30
     done
-    echo "$1 is owned by www-data"
+    echo "www-data can write to $1"
 }
 
 ILIAS_COMMON_CLIENT_ID="${ILIAS_COMMON_CLIENT_ID:=default}"
