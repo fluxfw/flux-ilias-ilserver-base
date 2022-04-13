@@ -67,10 +67,5 @@ NicId = $ILIAS_ILSERVER_NIC_ID" > "$ILIAS_ILSERVER_PROPERTIES_PATH"
 
 start_ilserver="java -jar $ILIAS_WEB_DIR/Services/WebServices/RPC/lib/ilServer.jar $ILIAS_ILSERVER_PROPERTIES_PATH start"
 
-echo "Unset ILIAS env variables (For not show in PHP variables or log files)"
-for var in $(printenv | grep "ILIAS_" | sed 's/=.*$//'); do
-    unset "$var"
-done
-
 echo "Start ilserver"
 exec $start_ilserver
