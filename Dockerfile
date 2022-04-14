@@ -2,7 +2,7 @@ ARG JAVA_IMAGE=openjdk:jre-alpine
 
 FROM $JAVA_IMAGE
 
-LABEL org.opencontainers.image.source="https://github.com/fluxapps/flux-ilias-ilserver-base"
+LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-ilserver-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
 
 RUN getent group www-data || addgroup -g 82 www-data && adduser -u 82 -D -S -G www-data www-data
