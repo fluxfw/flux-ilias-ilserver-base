@@ -1,6 +1,5 @@
-ARG JAVA_IMAGE=openjdk:jre-alpine
-
-FROM $JAVA_IMAGE
+ARG JAVA_VERSION
+FROM openjdk:$JAVA_VERSION-jre-alpine
 
 LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-ilserver-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
@@ -29,3 +28,6 @@ EXPOSE $ILIAS_ILSERVER_PORT
 ENTRYPOINT ["/flux-ilias-ilserver-base/bin/docker-entrypoint.sh"]
 
 COPY . /flux-ilias-ilserver-base
+
+ARG COMMIT_SHA
+LABEL org.opencontainers.image.revision="$COMMIT_SHA"
