@@ -1,6 +1,5 @@
 stages:
     - build
-    - build-artifact
     - publish
     - repository
 
@@ -30,18 +29,6 @@ build:
           done
         - docker tag $CI_REGISTRY_IMAGE:${DOCKER_IMAGE_TAG_PREFIX}java8 $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
         - docker push $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
-    only:
-        - branches
-        - tags
-
-create-gitlab-artifact-from-build:
-    stage: build-artifact
-    image: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/flux-docker-gitlab-build-artifact:latest
-    script:
-        - create-gitlab-artifact-from-docker-build $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG /$CI_PROJECT_NAME.tar.gz $CI_PROJECT_NAME-build.tar.gz
-    artifacts:
-        paths:
-            - $CI_PROJECT_NAME-build.tar.gz
     only:
         - branches
         - tags
