@@ -1,11 +1,4 @@
 ARG JAVA_VERSION
-
-FROM alpine:latest AS build
-
-COPY . /build/flux-ilias-ilserver-base
-
-RUN (cd /build && tar -czf flux-ilias-ilserver-base.tar.gz flux-ilias-ilserver-base)
-
 FROM openjdk:$JAVA_VERSION-jre-alpine
 
 LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-ilserver-base"
@@ -34,7 +27,7 @@ EXPOSE $ILIAS_ILSERVER_PORT
 
 ENTRYPOINT ["/flux-ilias-ilserver-base/bin/docker-entrypoint.sh"]
 
-COPY --from=build /build /
+COPY . /flux-ilias-ilserver-base
 
 ARG COMMIT_SHA
 LABEL org.opencontainers.image.revision="$COMMIT_SHA"
