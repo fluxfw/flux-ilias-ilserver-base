@@ -1,8 +1,6 @@
 ARG JAVA_VERSION
 FROM openjdk:$JAVA_VERSION-jre-alpine
 
-LABEL org.opencontainers.image.source="https://github.com/fluxfw/flux-ilias-ilserver-base"
-
 RUN getent group www-data || addgroup -g 82 www-data && adduser -u 82 -D -S -G www-data www-data
 
 ENV ILIAS_WEB_DIR /var/www/html
