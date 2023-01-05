@@ -1,2 +1,2 @@
 *
-!bin/docker-entrypoint.sh
+!bin/server.sh
