@@ -22,7 +22,7 @@ RUN mkdir -p "$ILIAS_ILSERVER_INDEX_PATH"
 ENV ILIAS_ILSERVER_PORT 11111
 EXPOSE $ILIAS_ILSERVER_PORT
 
-ENTRYPOINT ["/flux-ilias-ilserver-base/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/flux-ilias-ilserver-base/bin/server.sh"]
 
 COPY . /flux-ilias-ilserver-base
 
