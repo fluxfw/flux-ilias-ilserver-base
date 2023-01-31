@@ -24,7 +24,7 @@ build:
     stage: build
     script:
         - for java_version in $JAVA_VERSIONS; do
-              docker build . --pull --build-arg COMMIT_SHA=$CI_COMMIT_SHA --build-arg JAVA_VERSION=$java_version -t $CI_REGISTRY_IMAGE:${DOCKER_IMAGE_TAG_PREFIX}java$java_version;
+              docker build . --pull --build-arg JAVA_VERSION=$java_version -t $CI_REGISTRY_IMAGE:${DOCKER_IMAGE_TAG_PREFIX}java$java_version;
               docker push $CI_REGISTRY_IMAGE:${DOCKER_IMAGE_TAG_PREFIX}java$java_version;
           done
         - docker tag $CI_REGISTRY_IMAGE:${DOCKER_IMAGE_TAG_PREFIX}java8 $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
