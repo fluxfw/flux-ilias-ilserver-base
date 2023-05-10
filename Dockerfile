@@ -19,9 +19,6 @@ USER www-data:www-data
 ENV ILIAS_ILSERVER_INDEX_PATH $ILIAS_ILSERVER_DATA_DIR/index
 RUN mkdir -p "$ILIAS_ILSERVER_INDEX_PATH"
 
-ENV ILIAS_ILSERVER_PORT 11111
-EXPOSE $ILIAS_ILSERVER_PORT
-
 ENTRYPOINT ["/flux-ilias-ilserver-base/bin/server.sh"]
 
 COPY . /flux-ilias-ilserver-base
