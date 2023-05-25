@@ -8,11 +8,9 @@ RUN mkdir -p "$ILIAS_WEB_DIR" && chown www-data:www-data -R "$ILIAS_WEB_DIR"
 
 ENV ILIAS_ILSERVER_DATA_DIR /var/ilserverdata
 RUN mkdir -p "$ILIAS_ILSERVER_DATA_DIR" && chown www-data:www-data -R "$ILIAS_ILSERVER_DATA_DIR"
-VOLUME $ILIAS_ILSERVER_DATA_DIR
 
 ENV ILIAS_FILESYSTEM_DATA_DIR /var/iliasdata
 RUN mkdir -p "$ILIAS_FILESYSTEM_DATA_DIR" && chown www-data:www-data -R "$ILIAS_FILESYSTEM_DATA_DIR"
-VOLUME $ILIAS_FILESYSTEM_DATA_DIR
 
 USER www-data:www-data
 
